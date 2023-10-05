@@ -47,6 +47,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then(data => setStore({
 					contacts : data
 				}))
+			},
+			handleDelete: async (id) =>{
+				let URL_DELETE = `https://playground.4geeks.com/apis/fake/contact/${id}`
+				try {
+					let response = await fetch(URL_DELETE,{
+						method: "DELETE",
+						headers:{
+							"Content-Type": "application/json"
+						}
+					})
+					if(response.ok){
+						getAllContacts()
+					}
+				} catch (error) {
+					console.log(error);
+				}
 			}
 		}
 	};
