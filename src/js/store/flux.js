@@ -12,7 +12,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			contacts : []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -37,6 +38,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			
+			},
+			getAllContacts: () =>{
+				let URL = "https://playground.4geeks.com/apis/fake/contact/agenda/ramicorrea21"
+				fetch(URL)
+				.then(res => res.json())
+				.then(data => setStore({
+					contacts : data
+				}))
 			}
 		}
 	};
