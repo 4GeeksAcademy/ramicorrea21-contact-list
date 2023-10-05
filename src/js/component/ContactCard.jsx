@@ -1,8 +1,13 @@
-import React, { useContext } from 'react'
+import React, { useContext} from 'react'
 import { Context } from '../store/appContext'
 import '../../styles/index.css'
+import contactimg from '../../img/contactimg.jpg'
+
+
 const ContactCard = () => {
     const { store, actions } = useContext(Context)
+
+
 
     return (
         <>
@@ -16,7 +21,7 @@ const ContactCard = () => {
                                     <div className="card-body d-flex justify-content-between">
                                         <div className='d-flex'>
                                             <div>
-                                                <img src="../../contactimg.jpg" alt="" />
+                                                <img src={contactimg} alt="contact image" />
                                             </div>
                                             <div>
                                                 <h5 className="card-title">{contact.full_name}</h5>
