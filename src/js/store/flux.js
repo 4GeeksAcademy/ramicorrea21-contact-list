@@ -58,11 +58,44 @@ const getState = ({ getStore, getActions, setStore }) => {
 						}
 					})
 					if(response.ok){
-						getAllContacts()
+						getActions().getAllContacts()
 					}
 				} catch (error) {
 					console.log(error);
 				}
+			},
+			postContact : async(newContact) =>{
+				try {
+					let response = await fetch('https://playground.4geeks.com/apis/fake/contact/',{
+						method: "POST",
+						headers :{
+							"Content-Type": "application/json"
+						},
+						body: JSON.stringify(newContact)
+					})
+					if(response.ok){
+						getActions().getAllContacts()
+					}
+				} catch (error) {
+					console.log(error);
+				}
+			},
+			putEditedContact : async(id, editContact) =>{
+			let URL_EDIT = `https://playground.4geeks.com/apis/fake/contact/${id}`
+			try {
+				let response = fetch(URL_EDIT, {
+					method: "PUT",
+					headers:{
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify(editContact)
+				})
+				if(response.ok){
+					getActions().getAllContacts()
+				}
+			} catch (error) {
+				
+			}
 			}
 		}
 	};

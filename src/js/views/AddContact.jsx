@@ -19,20 +19,7 @@ const AddContact = () => {
             phone : phone,
         })
         if (newContact != undefined){
-            try {
-                let response = await fetch('https://playground.4geeks.com/apis/fake/contact/',{
-                    method: "POST",
-                    headers :{
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(newContact)
-                })
-                if(response.ok){
-                    actions.getAllContacts()
-                }
-            } catch (error) {
-                console.log(error);
-            }
+           actions.postContact(newContact)
         }
       
     }
