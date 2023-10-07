@@ -83,7 +83,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			putEditedContact : async(id, editContact) =>{
 			let URL_EDIT = `https://playground.4geeks.com/apis/fake/contact/${id}`
 			try {
-				let response = fetch(URL_EDIT, {
+				let response = await fetch(URL_EDIT, {
 					method: "PUT",
 					headers:{
 						"Content-Type": "application/json"
@@ -94,7 +94,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					getActions().getAllContacts()
 				}
 			} catch (error) {
-				
+				console.log(error)
 			}
 			}
 		}

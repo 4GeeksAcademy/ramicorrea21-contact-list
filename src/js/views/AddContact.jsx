@@ -4,28 +4,25 @@ import { Link } from "react-router-dom";
 const AddContact = () => {
     const {store, actions} = useContext(Context)
 
-    const [newContact, setNewContact] = useState()
-    const [fullname, setFullname] = useState('')
-    const [address, setAddress] = useState('')
-    const [phone, setPhone] = useState()
-    const [email, setEmail] = useState('')
- 
-    const addNewContact = async () =>{
-         setNewContact({
-            address : address,
-            agenda_slug: "ramicorrea21",
-            email : email,
-            full_name : fullname,
-            phone : phone,
+    
+    const [contact, setContact] = useState({
+        address : "",
+        agenda_slug: "ramicorrea21",
+        email : "",
+        full_name : "",
+        phone : "",
+    })
+    const handleChange = (e) =>{
+        setContact({
+            ...contact, 
+            [e.target.name] : e.target.value
         })
-        if (newContact != undefined){
-           actions.postContact(newContact)
-        }
-      
     }
+ 
+      
     const handleSubmit = (e) =>{
         e.preventDefault() 
-        addNewContact()
+        actions.postContact(contact)
     }
 
 
@@ -34,13 +31,13 @@ const AddContact = () => {
             <h1 className="text-center">Add a contact</h1>
             <form onSubmit={handleSubmit}>
                 <label>Full Name</label>
-                <input className="form-control form-control-lg" type="text" placeholder="full name" onChange={(e) => setFullname(e.target.value)}/>
+                <input className="form-control form-control-lg" type="text" placeholder="full name" name="full_name" value={contact.full_name} onChange={handleChange}/>
                 <label>Email</label>
-                <input className="form-control form-control-lg" type="email" placeholder="Email" onChange={(e) => setEmail(e.target.value)} />
+                <input className="form-control form-control-lg" type="email" placeholder="Email" name="email" value={contact.email} onChange={handleChange} />
                 <label>Phone</label>
-                <input className="form-control form-control-lg" type="number" placeholder="Phone" onChange={(e) => setPhone(e.target.value)} />
+                <input className="form-control form-control-lg" type="number" placeholder="Phone" name="phone" value={contact.phone} onChange={handleChange} />
                 <label>Address</label>
-                <input className="form-control form-control-lg" type="text" placeholder="Address" onChange={(e) => setAddress(e.target.value)} />
+                <input className="form-control form-control-lg" type="text" placeholder="Address" name="address" value={contact.address} onChange={handleChange} />
                 <div className="d-grid gap-2 mt-2">
                     <button  className="btn btn-primary">Save</button>
                 </div>
