@@ -29,7 +29,7 @@ const AddContact = () => {
     return (
         <div className="container">
             <h1 className="text-center">Add a contact</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} autoComplete="off">
                 <label>Full Name</label>
                 <input className="form-control form-control-lg" type="text" placeholder="full name" name="full_name" value={contact.full_name} onChange={handleChange}/>
                 <label>Email</label>
